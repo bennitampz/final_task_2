@@ -6,123 +6,237 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class ApiController extends Controller
 {
-    // POST [ name, email, password, password_confirmation ]
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         try {
-            //Validation
-            $validator = validator($request->all(), [
-                "name" => "required|min:3|max:255",
-                "email" => "required|email|unique:users",
-                "password" => "required|min:8|confirmed",
-                "password_confirmation" => "required"
-            ], [
-                "name.required" => "Name field is required",
-                "name.min" => "Name must be at least 3 characters",
-                "email.required" => "Email field is required",
-                "email.email" => "Please enter a valid email address",
-                "email.unique" => "This email is already registered",
-                "password.required" => "Password field is required",
-                "password.min" => "Password must be at least 8 characters",
-                "password.confirmed" => "Password confirmation does not match",
-                "password_confirmation.required" => "Password confirmation is required"
+            $validator = Validator::make($request->all(), [
+                'name' => ['required', 'string', 'min:3', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'confirmed', Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                ],
             ]);
 
-            if($validator->fails()) {
+            if ($validator->fails()) {
                 return response()->json([
-                    "status" => false,
-                    "message" => "Validation Error",
-                    "errors" => $validator->errors()
+                    'status' => false,
+                    'message' => 'Validation Error',
+                    'errors' => $validator->errors()
                 ], 422);
             }
 
-            //Create User
             $user = User::create([
-                "name" => $request->name,
-                "email" => $request->email,
-                "password" => bcrypt($request->password)
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
             ]);
 
+            $token = $user->createToken('auth_token')->accessToken;
+
             return response()->json([
-                "status" => true,
-                "message" => "User Registered Successfully",
-                "data" => $user
+                'status' => true,
+                'message' => 'Registration successful',
+                'data' => [
+                    'user' => $user,
+                    'token' => $token
+                ]
             ], 201);
 
         } catch (\Exception $e) {
             return response()->json([
-                "status" => false,
-                "message" => "Registration Failed",
-                "error" => $e->getMessage()
+                'status' => false,
+                'message' => 'Registration failed',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         try {
-            // Enhanced validation
-            $validator = validator($request->all(), [
-                "email" => "required|email|exists:users,email",
-                "password" => "required|min:8"
-            ], [
-                "email.required" => "Email field is required",
-                "email.email" => "Please enter a valid email address",
-                "email.exists" => "This email is not registered in our system",
-                "password.required" => "Password field is required",
-                "password.min" => "Password must be at least 8 characters"
+            $validator = Validator::make($request->all(), [
+                'email' => ['required', 'email', 'exists:users,email'],
+                'password' => ['required', 'string', 'min:8'],
             ]);
 
-            if($validator->fails()) {
+            if ($validator->fails()) {
                 return response()->json([
-                    "status" => false,
-                    "message" => "Validation Error",
-                    "errors" => $validator->errors()
+                    'status' => false,
+                    'message' => 'Validation Error',
+                    'errors' => $validator->errors()
                 ], 422);
             }
 
-            $user = User::where("email", $request->email)->first();
+            $user = User::where('email', $request->email)->first();
 
-            if(Hash::check($request->password, $user->password)) {
-                $token = $user->createToken("auth_token")->accessToken;
-
+            if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json([
-                    "status" => true,
-                    "message" => "User Logged In Successfully",
-                    "token" => $token,
-                    "user" => $user
-                ], 200);
+                    'status' => false,
+                    'message' => 'Invalid credentials'
+                ], 401);
             }
 
+            $token = $user->createToken('auth_token')->accessToken;
+
             return response()->json([
-                "status" => false,
-                "message" => "Invalid credentials"
-            ], 401);
+                'status' => true,
+                'message' => 'Login successful',
+                'data' => [
+                    'user' => $user,
+                    'token' => $token
+                ]
+            ]);
 
         } catch (\Exception $e) {
             return response()->json([
-                "status" => false,
-                "message" => "Login Failed",
-                "error" => $e->getMessage()
+                'status' => false,
+                'message' => 'Login failed',
+                'error' => $e->getMessage()
             ], 500);
         }
-    }    //Get [Auth: Token]
-    public function profile(){
-        $userData = auth()->user();
-        return response()->json([
-            "status" => true,
-            "message" => "User Profile Information",
-            "data" => $userData
-        ]);
     }
-    public function logout(Request $request){
-        $request->user()->token()->revoke();
-        return response()->json([
-            "status" => true,
-            "message" => "User Logged Out Successfully"
-        ]);
+
+    public function profile()
+    {
+        try {
+            $user = auth()->user();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Profile retrieved successfully',
+                'data' => $user
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to retrieve profile',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        try {
+            $user = auth()->user();
+
+            $validator = Validator::make($request->all(), [
+                'name' => ['required', 'string', 'min:3', 'max:255'],
+                'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+                'current_password' => ['required_with:new_password'],
+                'new_password' => ['nullable', 'min:8', 'confirmed',
+                    Password::min(8)->mixedCase()->numbers()->symbols()
+                ],
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation Error',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+
+            if ($request->filled('current_password')) {
+                if (!Hash::check($request->current_password, $user->password)) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Current password is incorrect'
+                    ], 401);
+                }
+            }
+
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+            ];
+
+            if ($request->filled('new_password')) {
+                $updateData['password'] = Hash::make($request->new_password);
+            }
+
+            $user->update($updateData);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Profile updated successfully',
+                'data' => $user
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Profile update failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            $request->user()->token()->revoke();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully logged out'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Logout failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'password' => ['required', 'string']
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation Error',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+
+            $user = auth()->user();
+
+            if (!Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid password'
+                ], 401);
+            }
+
+            $user->tokens()->delete();
+            $user->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Account deleted successfully'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Account deletion failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
-
-
