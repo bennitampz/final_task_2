@@ -24,7 +24,7 @@
 
                         <div class="flex items-center space-x-4">
                             <a href="/login" class="text-gray-700 hover:text-[#FF2D20] px-3 py-2 rounded-md dark:text-gray-200">Login</a>
-                            <a href="/api/register" class="bg-[#FF2D20] text-white px-4 py-2 rounded-md hover:bg-[#FF2D20]/90">Register</a>
+                            <a href="/register" class="bg-[#FF2D20] text-white px-4 py-2 rounded-md hover:bg-[#FF2D20]/90">Register</a>
                         </div>
                     </div>
                 </div>
