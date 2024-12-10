@@ -25,13 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories = Category::withCount('articles')->orderBy('articles_count', 'desc')->take(4)->get();
         $recipes = ArticleResep::with(['user', 'category'])
             ->latest()
             ->take(6)
             ->get();
 
-        $categories = Category::all();
-
-        return view('home', compact('recipes', 'categories'));
+        return view('home', compact('categories', 'recipes'));
     }
 }

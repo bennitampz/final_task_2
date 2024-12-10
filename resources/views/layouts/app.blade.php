@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    @if(auth()->check())
+        <meta name="api-token" content="{{ auth()->user()->createToken('auth_token')->accessToken }}">
+    @endif
     <title>Recipe Hub</title>
 
     <!-- Modern Fonts -->

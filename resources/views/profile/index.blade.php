@@ -1,91 +1,108 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <!-- Profile Card -->
-            <div class="card shadow-sm">
-                <!-- Card Header with Dynamic Title -->
-                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">
-                        <i class="fas fa-user-circle me-2"></i>
-                        <span id="profileTitle">My Profile</span>
-                    </h4>
-                    <button id="toggleEdit" class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit me-2"></i>Edit Profile
-                    </button>
+            <!-- Profile Card with Enhanced Design -->
+            <div class="card border-0 rounded-3xl shadow-lg overflow-hidden">
+                <!-- Modern Card Header -->
+                <div class="card-header bg-gradient-to-r from-[#FF2D20] to-[#FF6B4D] py-4 px-6 border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0 text-white">
+                            <i class="fas fa-user-circle me-2"></i>
+                            <span id="profileTitle" class="recipe-title">My Profile</span>
+                        </h4>
+                        <button id="toggleEdit" class="btn btn-light btn-sm rounded-pill px-4">
+                            <i class="fas fa-edit me-2"></i>Edit Profile
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Card Body -->
-                <div class="card-body">
+                <!-- Enhanced Card Body -->
+                <div class="card-body p-6">
                     <!-- View Mode Section -->
                     <div id="viewMode">
-                        <!-- Profile Avatar and Basic Info -->
-                        <div class="text-center mb-4">
-                            <div class="avatar-placeholder mb-3">
-                                <i class="fas fa-user fa-4x text-muted"></i>
+                        <!-- Stylish Profile Avatar -->
+                        <div class="text-center mb-5">
+                            <div class="avatar-placeholder mb-4">
+                                <div class="rounded-circle bg-[#FF2D20]/10 p-4 d-inline-block">
+                                    <i class="fas fa-user fa-4x text-[#FF2D20]"></i>
+                                </div>
                             </div>
-                            <h5 class="mb-0">{{ Auth::user()->name }}</h5>
+                            <h3 class="recipe-title mb-2">{{ Auth::user()->name }}</h3>
                             <p class="text-muted">{{ Auth::user()->email }}</p>
                         </div>
 
-                        <!-- Profile Details -->
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Name</label>
-                                <input type="text" class="form-control bg-light" value="{{ Auth::user()->name }}" readonly>
+                        <!-- Modern Profile Details -->
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label fw-bold text-[#FF2D20]">Name</label>
+                                    <input type="text" class="form-control form-control-lg bg-light rounded-pill" value="{{ Auth::user()->name }}" readonly>
+                                </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Email</label>
-                                <input type="email" class="form-control bg-light" value="{{ Auth::user()->email }}" readonly>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label fw-bold text-[#FF2D20]">Email</label>
+                                    <input type="email" class="form-control form-control-lg bg-light rounded-pill" value="{{ Auth::user()->email }}" readonly>
+                                </div>
                             </div>
-                            <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Member Since</label>
-                                <input type="text" class="form-control bg-light" value="{{ Auth::user()->created_at->format('F d, Y') }}" readonly>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label fw-bold text-[#FF2D20]">Member Since</label>
+                                    <input type="text" class="form-control form-control-lg bg-light rounded-pill" value="{{ Auth::user()->created_at->format('F d, Y') }}" readonly>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Edit Mode Section -->
+                    <!-- Enhanced Edit Mode Section -->
                     <div id="editMode" style="display: none;">
                         <form id="updateProfileForm" class="needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label required">Name</label>
-                                    <input type="text" class="form-control" name="name"
-                                           value="{{ Auth::user()->name }}" required minlength="3">
-                                    <div class="invalid-feedback">Name must be at least 3 characters long</div>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label required text-[#FF2D20]">Name</label>
+                                        <input type="text" class="form-control form-control-lg rounded-pill" name="name" value="{{ Auth::user()->name }}" required minlength="3">
+                                        <div class="invalid-feedback">Name must be at least 3 characters long</div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label required">Email</label>
-                                    <input type="email" class="form-control" name="email"
-                                           value="{{ Auth::user()->email }}" required>
-                                    <div class="invalid-feedback">Please enter a valid email address</div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label required text-[#FF2D20]">Email</label>
+                                        <input type="email" class="form-control form-control-lg rounded-pill" name="email" value="{{ Auth::user()->email }}" required>
+                                        <div class="invalid-feedback">Please enter a valid email address</div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Current Password</label>
-                                    <input type="password" class="form-control" name="current_password">
-                                    <small class="text-muted">Required only if changing password</small>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-[#FF2D20]">Current Password</label>
+                                        <input type="password" class="form-control form-control-lg rounded-pill" name="current_password">
+                                        <small class="text-muted">Required only if changing password</small>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">New Password</label>
-                                    <input type="password" class="form-control" name="new_password"
-                                           minlength="8">
-                                    <small class="text-muted">Leave blank to keep current password</small>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-[#FF2D20]">New Password</label>
+                                        <input type="password" class="form-control form-control-lg rounded-pill" name="new_password" minlength="8">
+                                        <small class="text-muted">Leave blank to keep current password</small>
+                                    </div>
                                 </div>
-                                <div class="col-12 mb-3">
-                                    <label class="form-label">Confirm New Password</label>
-                                    <input type="password" class="form-control" name="new_password_confirmation">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-[#FF2D20]">Confirm New Password</label>
+                                        <input type="password" class="form-control form-control-lg rounded-pill" name="new_password_confirmation">
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Action Buttons -->
-                            <div class="d-flex gap-2 justify-content-end">
-                                <button type="button" id="cancelEdit" class="btn btn-secondary">
+                            <!-- Styled Action Buttons -->
+                            <div class="d-flex gap-3 justify-content-end mt-5">
+                                <button type="button" id="cancelEdit" class="btn btn-light btn-lg rounded-pill px-5">
                                     <i class="fas fa-times me-2"></i>Cancel
                                 </button>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-lg rounded-pill px-5 text-white" style="background-color: #FF2D20">
                                     <i class="fas fa-save me-2"></i>Save Changes
                                 </button>
                             </div>
@@ -99,39 +116,29 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Get button elements
-    const toggleEdit = document.getElementById('toggleEdit');
-    const viewMode = document.getElementById('viewMode');
-    const editMode = document.getElementById('editMode');
-
-    // Add click event listener to toggle button
-    toggleEdit.addEventListener('click', function() {
-        viewMode.style.display = 'none';
-        editMode.style.display = 'block';
-        toggleEdit.style.display = 'none';
-    });
-
-
-    // Cancel edit mode
-    cancelEdit.addEventListener('click', function() {
-        viewMode.style.display = 'block';
-        editMode.style.display = 'none';
-        toggleEdit.style.display = 'block';
-    });
-
-    // Handle form submission
-    document.getElementById('updateProfileForm').addEventListener('submit', function(e) {
+ document.getElementById('updateProfileForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const formData = new FormData(this);
+    // Get form data
+    const formData = new FormData();
+    formData.append('name', this.elements['name'].value);
+    formData.append('email', this.elements['email'].value);
+
+    if (this.elements['current_password'].value) {
+        formData.append('current_password', this.elements['current_password'].value);
+    }
+    if (this.elements['new_password'].value) {
+        formData.append('new_password', this.elements['new_password'].value);
+        formData.append('new_password_confirmation', this.elements['new_password_confirmation'].value);
+    }
 
     fetch('/api/profile/update', {
         method: 'POST',
         headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            // Use session token instead of localStorage
+            'Authorization': `Bearer ${document.querySelector('meta[name="api-token"]').getAttribute('content')}`
         },
         body: formData
     })
@@ -141,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Profile updated successfully');
             location.reload();
         } else {
-            // Display validation errors
             const errors = data.errors;
             let errorMessage = '';
             for (let field in errors) {
@@ -155,6 +161,74 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('An error occurred while updating profile');
     });
 });
+// Add a flag to track if event listener is already added
+let isEventListenerAdded = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all required elements
+    const toggleEditBtn = document.getElementById('toggleEdit');
+    const viewModeDiv = document.getElementById('viewMode');
+    const editModeDiv = document.getElementById('editMode');
+    const cancelEditBtn = document.getElementById('cancelEdit');
+
+    // Toggle to edit mode
+    toggleEditBtn.addEventListener('click', function() {
+        viewModeDiv.style.display = 'none';
+        editModeDiv.style.display = 'block';
+        toggleEditBtn.style.display = 'none';
+    });
+
+    // Toggle back to view mode
+    cancelEditBtn.addEventListener('click', function() {
+        viewModeDiv.style.display = 'block';
+        editModeDiv.style.display = 'none';
+        toggleEditBtn.style.display = 'block';
+    });
+
+    // Form submission - single event listener
+    document.getElementById('updateProfileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('name', this.elements['name'].value);
+        formData.append('email', this.elements['email'].value);
+
+        if (this.elements['current_password'].value) {
+            formData.append('current_password', this.elements['current_password'].value);
+        }
+        if (this.elements['new_password'].value) {
+            formData.append('new_password', this.elements['new_password'].value);
+            formData.append('new_password_confirmation', this.elements['new_password_confirmation'].value);
+        }
+
+        fetch('/api/profile/update', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Authorization': `Bearer ${document.querySelector('meta[name="api-token"]').getAttribute('content')}`
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                alert('Profile updated successfully');
+                location.reload();
+            } else {
+                const errors = data.errors;
+                let errorMessage = '';
+                for (let field in errors) {
+                    errorMessage += `${errors[field].join('\n')}\n`;
+                }
+                alert(errorMessage || data.message || 'Update failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while updating profile');
+        });
+    });
 });
 </script>
 @endpush
