@@ -4,9 +4,7 @@ use App\Http\Controllers\Api\ArticleResepController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 
 Auth::routes();
 
@@ -25,3 +23,9 @@ Route::middleware(['auth'])->group(function() {
     Route::delete('/recipes/{id}', [ArticleResepController::class, 'destroy'])->name('recipes.destroy');
     Route::put('/recipes/{id}', [ArticleResepController::class, 'update'])->name('recipes.update');
 });
+
+Route::get('/categories/create', function () {
+    return view('categories.create');
+})->name('categories.create');
+
+Route::post('/categories', [App\Http\Controllers\Api\CategoryController::class, 'store'])->name('categories.store');

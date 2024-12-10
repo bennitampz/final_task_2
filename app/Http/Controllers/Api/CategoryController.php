@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -22,36 +23,32 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:categories',
-            'description' => 'required|string|max:1000'
+            'description' => 'required|string|max:1000',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()
-            ], 422);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Handle image upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('categories', 'public');
         }
 
         $category = Category::create([
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $imagePath,
             'user_id' => auth()->id()
         ]);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Category created successfully',
-            'data' => $category
-        ], 201);
-    }
-
-    public function show($id)
-    {
-        $category = Category::with(['user', 'articles'])->findOrFail($id);
-        return response()->json([
-            'status' => true,
-            'data' => $category
-        ]);
+        return redirect()->route('categories.create')
+            ->with('success', 'Category created successfully! Create another one.');
     }
 
     public function update(Request $request, $id)
@@ -60,7 +57,8 @@ class CategoryController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:categories,name,' . $id,
-            'description' => 'required|string|max:1000'
+            'description' => 'required|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -70,10 +68,24 @@ class CategoryController extends Controller
             ], 422);
         }
 
-        $category->update([
+        $data = [
             'name' => $request->name,
             'description' => $request->description
-        ]);
+        ];
+
+        // Handle image update
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($category->image) {
+                Storage::disk('public')->delete($category->image);
+            }
+
+            // Store new image
+            $image = $request->file('image');
+            $data['image'] = $image->store('categories', 'public');
+        }
+
+        $category->update($data);
 
         return response()->json([
             'status' => true,
@@ -85,11 +97,26 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+
+        // Delete image from storage if exists
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
+        }
+
         $category->delete();
 
         return response()->json([
             'status' => true,
             'message' => 'Category deleted successfully'
+        ]);
+    }
+
+    public function show($id)
+    {
+        $category = Category::with(['user', 'articles'])->findOrFail($id);
+        return response()->json([
+            'status' => true,
+            'data' => $category
         ]);
     }
 }

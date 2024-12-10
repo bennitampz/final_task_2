@@ -14,6 +14,7 @@
                 <div class="d-flex gap-3">
                     <a href="#explore" class="btn btn-primary px-4 py-2">Explore Recipes</a>
                     <a href="{{ route('recipes.create') }}" class="btn btn-outline-secondary px-4 py-2">Create Recipe</a>
+                    <a href="{{ route('categories.create') }}" class="btn btn-outline-secondary px-4 py-2">Create Category</a>
                     <a href="{{ route('my-recipes') }}" class="btn btn-outline-secondary px-4 py-2">List Recipe Created</a>
                 </div>
             </div>
@@ -27,7 +28,14 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body text-center">
-                            <i class="fas fa-utensils fa-2x mb-3 text-primary"></i>
+                            @if($category->image)
+                                <img src="{{ asset('storage/' . $category->image) }}"
+                     class="img-fluid mb-3 rounded-circle"
+                     style="width: 100px; height: 100px; object-fit: cover;"
+                     alt="{{ $category->name }}">
+                            @else
+                                <i class="fas fa-utensils fa-2x mb-3 text-primary"></i>
+                            @endif
                             <h5 class="card-title">{{ $category->name }}</h5>
                             <p class="card-text text-muted">{{ Str::limit($category->description, 50) }}</p>
                             <small class="text-primary">{{ $category->articles_count }} Recipes</small>
@@ -38,8 +46,7 @@
                 <div class="col-12">
                     <p class="text-center text-muted">No categories found</p>
                 </div>
-                @endforelse
-            </div>
+                @endforelse            </div>
         </div>
 
         <!-- Latest Recipes -->
