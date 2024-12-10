@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticleResep;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $recipes = ArticleResep::with(['user', 'category'])
+            ->latest()
+            ->take(6)
+            ->get();
+
+        $categories = Category::all();
+
+        return view('home', compact('recipes', 'categories'));
     }
 }

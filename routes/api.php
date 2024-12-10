@@ -19,6 +19,9 @@ Route::group(["middleware"=>["auth:api"]
     Route::get("logout", [ApiController::class, "logout"]);
     Route::apiResource('articles', ArticleResepController::class);
     Route::apiResource('categories', CategoryController::class);
+    Route::get('/recipes/create', [ArticleResepController::class, 'create']);
+    Route::post('/recipes/create', [ArticleResepController::class, 'create']);
+    Route::post('/recipes', [ArticleResepController::class, 'store']);
 });
 
 

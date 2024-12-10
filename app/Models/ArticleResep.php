@@ -12,8 +12,11 @@ class ArticleResep extends Model
         'image',
         'rate_item_id',
         'user_id',
-        'category_id'
+        'category_id',
+        'ingredients',
+        'instructions'
     ];
+
 
     public function user()
     {
