@@ -50,7 +50,6 @@ class CategoryController extends Controller
         return redirect()->route('categories.create')
             ->with('success', 'Category created successfully! Create another one.');
     }
-
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -62,10 +61,9 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()
-            ], 422);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $data = [
@@ -87,28 +85,8 @@ class CategoryController extends Controller
 
         $category->update($data);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Category updated successfully',
-            'data' => $category
-        ]);
-    }
-
-    public function destroy($id)
-    {
-        $category = Category::findOrFail($id);
-
-        // Delete image from storage if exists
-        if ($category->image) {
-            Storage::disk('public')->delete($category->image);
-        }
-
-        $category->delete();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Category deleted successfully'
-        ]);
+        return redirect()->route('categories.index')
+            ->with('success', 'Category updated successfully');
     }
 
     public function show($id)

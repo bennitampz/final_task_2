@@ -5,6 +5,11 @@ use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::get('/all-recipes', [ArticleResepController::class, 'index'])->name('all-recipes');
+Route::get('/explore-categories', function() {
+    $categories = App\Models\Category::withCount('articles')->get();
+    return view('categories.explore', compact('categories'));
+})->name('explore-categories');
 
 Auth::routes();
 
@@ -29,3 +34,5 @@ Route::get('/categories/create', function () {
 })->name('categories.create');
 
 Route::post('/categories', [App\Http\Controllers\Api\CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');Route::put('/categories/{id}', [App\Http\Controllers\Api\CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{id}', [App\Http\Controllers\Api\CategoryController::class, 'destroy'])->name('categories.destroy');

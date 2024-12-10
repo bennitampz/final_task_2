@@ -14,8 +14,9 @@
                 <div class="d-flex gap-3">
                     <a href="#explore" class="btn btn-primary px-4 py-2">Explore Recipes</a>
                     <a href="{{ route('recipes.create') }}" class="btn btn-outline-secondary px-4 py-2">Create Recipe</a>
-                    <a href="{{ route('categories.create') }}" class="btn btn-outline-secondary px-4 py-2">Create Category</a>
                     <a href="{{ route('my-recipes') }}" class="btn btn-outline-secondary px-4 py-2">List Recipe Created</a>
+                    <a href="{{ route('categories.create') }}" class="btn btn-outline-secondary px-4 py-2">Create Category</a>
+                    <a href="{{ route('categories.index') }}" class="btn btn-outline-secondary px-4 py-2">List Category</a>
                 </div>
             </div>
         </div>
@@ -50,8 +51,8 @@
         </div>
 
         <!-- Latest Recipes -->
-        <div class="col-lg-12">
-            <h2 class="fw-bold mb-4">Latest Recipes</h2>
+        <div id="explore" class="col-lg-12">
+            <h2  class="fw-bold mb-4">Latest Recipes</h2>
             <div class="row g-4">
                 @forelse($recipes as $recipe)
                 <div class="col-lg-4 col-md-6">

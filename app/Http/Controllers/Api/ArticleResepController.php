@@ -13,10 +13,15 @@ class ArticleResepController extends Controller
     public function index()
     {
         $articles = ArticleResep::with(['user', 'category'])->get();
-        return response()->json([
-            'status' => true,
-            'data' => $articles
-        ]);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'data' => $articles
+            ]);
+        }
+
+        return view('recipes.all-recipes', compact('articles'));
     }
     public function create()
     {

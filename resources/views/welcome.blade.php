@@ -91,10 +91,21 @@
                         Join our community of passionate food lovers and explore thousands of mouthwatering recipes from around the world
                     </p>
                     <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-                        <a href="#featured" class="group inline-flex items-center px-8 py-4 text-lg font-medium rounded-full text-white bg-[#FF2D20] hover:bg-[#FF2D20]/90 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
-                            <i class="fas fa-search mr-2 group-hover:rotate-12 transition-transform"></i>
-                            Explore Recipes
-                        </a>
+
+
+
+
+                        @auth
+                            <a href="{{ route('home') }}" class="group inline-flex items-center px-8 py-4 text-lg font-medium rounded-full text-white bg-green-600 hover:bg-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                                <i class="fas fa-home mr-2 group-hover:rotate-12 transition-transform"></i>
+                                Go to Dashboard
+                            </a>
+                        @else
+                            <a href="/all-recipes" class="group inline-flex items-center px-8 py-4 text-lg font-medium rounded-full text-white bg-[#FF2D20] hover:bg-[#FF2D20]/90 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                                <i class="fas fa-search mr-2 group-hover:rotate-12 transition-transform"></i>
+                                Explore Recipes
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -124,6 +135,13 @@
                     </div>
                     @endforelse
                 </div>
+                <div class="text-center mt-12">
+                    <a href="{{ route('explore-categories') }}"
+                       class="inline-flex items-center px-6 py-3 bg-[#FF2D20] text-white font-semibold rounded-full hover:bg-[#FF2D20]/90 transition-all duration-300 shadow-lg hover:shadow-[#FF2D20]/20">
+                        Explore Categories
+                        <i class="fas fa-compass ml-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -135,10 +153,11 @@
                         <i class="fas fa-star text-[#FF2D20] mr-3"></i>
                         Featured Recipes
                     </h2>
-                    <a href="#" class="flex items-center text-[#FF2D20] hover:text-[#FF2D20]/80 transition-colors">
+                    <a href="{{ route('all-recipes') }}" class="flex items-center text-[#FF2D20] hover:text-[#FF2D20]/80 transition-colors">
                         View All
                         <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                     </a>
+
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @forelse($recipes as $recipe)
@@ -186,30 +205,6 @@
             </div>
         </div>
 
-        <!-- Newsletter Section -->
-        <div class="bg-[#FF2D20]/5 py-20 dark:bg-gray-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-700 rounded-3xl p-12 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mt-8 -mr-8">
-                        <svg class="w-32 h-32 text-[#FF2D20]/10" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
-                        </svg>
-                    </div>
-                    <div class="relative z-10">
-                        <h2 class="recipe-title text-4xl font-bold text-gray-900 dark:text-white mb-6">Get Weekly Recipe Updates</h2>
-                        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Subscribe to our newsletter and never miss out on delicious new recipes!</p>
-                        <form class="flex gap-4">
-                            <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 rounded-full border-2 border-gray-200 focus:border-[#FF2D20] focus:ring-2 focus:ring-[#FF2D20]/20 outline-none transition-all">
-                            <button class="px-8 py-4 bg-[#FF2D20] text-white rounded-full hover:bg-[#FF2D20]/90 transform hover:scale-105 transition-all shadow-lg hover:shadow-xl">
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Footer -->
         <footer class="bg-white dark:bg-gray-900 py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -253,10 +248,16 @@
                     </div>
                 </div>
                 <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center text-gray-600 dark:text-gray-400">
-                    <p>&copy; {{ date('Y') }} Recipe Hub. All rights reserved.</p>
+                    <p>&copy; {{ date('Y') }} Benni Tampubolon. All rights reserved.</p>
                 </div>
             </div>
         </footer>
     </body>
 </html>
 
+
+@auth
+    <a href="{{ route('home') }}" class="text-gray-700 hover:text-[#FF2D20] px-5 py-2.5 rounded-full border-2 border-transparent hover:border-[#FF2D20] transition-all duration-300 dark:text-gray-200">
+        <i class="fas fa-home mr-2"></i>Home
+    </a>
+@endauth
