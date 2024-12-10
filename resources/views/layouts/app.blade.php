@@ -14,7 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    
+
 
     <style>
         body {
@@ -114,9 +114,6 @@
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         <i class="fas fa-user me-2"></i> Profile
-                                    </a>
-                                    <a class="dropdown-item" href="{{ url('/settings') }}">
-                                        <i class="fas fa-cog me-2"></i> Settings
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
