@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArticleResep;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -14,6 +15,11 @@ class WelcomeController extends Controller
             ->take(6)
             ->get();
 
-        return view('welcome', compact('recipes'));
+        $categories = Category::withCount('articles')
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return view('welcome', compact('recipes', 'categories'));
     }
 }

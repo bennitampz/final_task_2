@@ -107,18 +107,22 @@
                     Popular Categories
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    @foreach(['Breakfast', 'Lunch', 'Dinner', 'Desserts'] as $category)
+                    @forelse($categories as $category)
                     <div class="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                        <img src="https://source.unsplash.com/480x320/?{{ strtolower($category) }},food"
-                             alt="{{ $category }}"
+                        <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://source.unsplash.com/480x320/?food' }}"
+                             alt="{{ $category->name }}"
                              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-xl font-bold text-white">{{ $category }}</h3>
-                            <p class="text-gray-200 mt-2">Explore recipes →</p>
+                            <h3 class="text-xl font-bold text-white">{{ $category->name }}</h3>
+                            <p class="text-gray-200 mt-2">{{ $category->articles_count }} Recipes →</p>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="col-span-4 text-center">
+                        <p class="text-gray-500 dark:text-gray-400">No categories found</p>
+                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
