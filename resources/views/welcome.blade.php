@@ -120,14 +120,16 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                     @forelse($categories as $category)
                     <div class="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                        <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://source.unsplash.com/480x320/?food' }}"
-                             alt="{{ $category->name }}"
-                             class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-xl font-bold text-white">{{ $category->name }}</h3>
-                            <p class="text-gray-200 mt-2">{{ $category->articles_count }} Recipes →</p>
-                        </div>
+                        <a href="{{ route('categories.show', $category->id) }}">
+                            <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://source.unsplash.com/480x320/?food' }}"
+                                 alt="{{ $category->name }}"
+                                 class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <h3 class="text-xl font-bold text-white">{{ $category->name }}</h3>
+                                <p class="text-gray-200 mt-2">{{ $category->articles_count }} Recipes →</p>
+                            </div>
+                        </a>
                     </div>
                     @empty
                     <div class="col-span-4 text-center">
@@ -155,46 +157,47 @@
                     </h2>
                     <a href="{{ route('all-recipes') }}" class="flex items-center text-[#FF2D20] hover:text-[#FF2D20]/80 transition-colors">
                         View All
-                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        <i class="fas fa-arrow-right ml-2"></i>
                     </a>
-
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @forelse($recipes as $recipe)
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-gray-800 transform hover:scale-105 transition-all duration-300">
-                        <div class="relative">
-                            <img src="{{ $recipe->image ? asset('storage/' . $recipe->image) : 'https://source.unsplash.com/480x320/?recipe,cooking' }}"
-                                  alt="{{ $recipe->title }}"
-                                  class="w-full h-56 object-cover">
-                            <div class="absolute top-4 right-4 bg-white/90 px-4 py-2 rounded-full text-sm font-medium text-[#FF2D20] dark:bg-gray-800/90">
-                                {{ $recipe->category->name }}
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <img src="https://ui-avatars.com/api/?name={{ urlencode($recipe->user->name) }}" class="w-10 h-10 rounded-full mr-3">
-                                <div>
-                                    <h4 class="text-sm font-medium text-gray-900 dark:text-white">{{ $recipe->user->name }}</h4>
-                                    <p class="text-sm text-gray-500">Recipe Creator</p>
+                        <a href="{{ route('recipes.show', $recipe->id) }}" class="text-decoration-none">
+                            <div class="relative">
+                                <img src="{{ $recipe->image ? asset('storage/' . $recipe->image) : 'https://source.unsplash.com/480x320/?recipe,cooking' }}"
+                                      alt="{{ $recipe->title }}"
+                                      class="w-full h-56 object-cover">
+                                <div class="absolute top-4 right-4 bg-white/90 px-4 py-2 rounded-full text-sm font-medium text-[#FF2D20] dark:bg-gray-800/90">
+                                    {{ $recipe->category->name }}
                                 </div>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ $recipe->title }}</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ Str::limit($recipe->content, 100) }}</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <div class="flex text-yellow-400">
-                                        @for ($star = 1; $star <= $recipe->rate_item_id; $star++)
-                                            <i class="fas fa-star text-sm"></i>
-                                        @endfor
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($recipe->user->name) }}" class="w-10 h-10 rounded-full mr-3">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-900 dark:text-white">{{ $recipe->user->name }}</h4>
+                                        <p class="text-sm text-gray-500">Recipe Creator</p>
                                     </div>
-                                    <span class="ml-2 text-sm text-gray-500">({{ $recipe->rate_item_id }} rating)</span>
                                 </div>
-                                <a href="#" class="flex items-center text-[#FF2D20] hover:text-[#FF2D20]/80 transition-colors">
-                                    View Recipe
-                                    <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ $recipe->title }}</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ Str::limit($recipe->content, 100) }}</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="flex text-yellow-400">
+                                            @for ($star = 1; $star <= $recipe->rate_item_id; $star++)
+                                                <i class="fas fa-star text-sm"></i>
+                                            @endfor
+                                        </div>
+                                        <span class="ml-2 text-sm text-gray-500">({{ $recipe->rate_item_id }} rating)</span>
+                                    </div>
+                                    <span class="flex items-center text-[#FF2D20] hover:text-[#FF2D20]/80 transition-colors">
+                                        View Recipe
+                                        <i class="fas fa-arrow-right ml-2"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     @empty
                     <div class="col-span-3 text-center py-8">

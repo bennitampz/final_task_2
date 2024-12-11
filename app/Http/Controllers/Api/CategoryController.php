@@ -18,6 +18,20 @@ class CategoryController extends Controller
             'data' => $categories
         ]);
     }
+    public function show($id)
+{
+    $category = Category::with(['user', 'articles.user'])->findOrFail($id);
+
+    if (request()->wantsJson()) {
+        return response()->json([
+            'status' => true,
+            'data' => $category
+        ]);
+    }
+
+    return view('recipes.category', compact('category'));
+}
+
 
     public function store(Request $request)
     {
@@ -87,14 +101,6 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully');
-    }
 
-    public function show($id)
-    {
-        $category = Category::with(['user', 'articles'])->findOrFail($id);
-        return response()->json([
-            'status' => true,
-            'data' => $category
-        ]);
     }
 }

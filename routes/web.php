@@ -10,6 +10,8 @@ Route::get('/explore-categories', function() {
     $categories = App\Models\Category::withCount('articles')->get();
     return view('categories.explore', compact('categories'));
 })->name('explore-categories');
+Route::get('/categories/{id}', [App\Http\Controllers\Api\CategoryController::class, 'show'])->name('categories.show');
+Route::get('/recipes/{id}', [App\Http\Controllers\Api\ArticleResepController::class, 'show'])->name('recipes.show');
 
 Auth::routes();
 
@@ -36,3 +38,5 @@ Route::get('/categories/create', function () {
 Route::post('/categories', [App\Http\Controllers\Api\CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');Route::put('/categories/{id}', [App\Http\Controllers\Api\CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [App\Http\Controllers\Api\CategoryController::class, 'destroy'])->name('categories.destroy');
+
+

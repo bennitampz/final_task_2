@@ -72,6 +72,8 @@ class ArticleResepController extends Controller
             ], 422);
         }
 
+
+
         $updateData = [
             'title' => $request->title,
             'content' => $request->content,
@@ -90,6 +92,19 @@ class ArticleResepController extends Controller
 
         return redirect()->route('my-recipes')->with('success', 'Recipe updated successfully!');
     }
+    public function show($id)
+{
+    $article = ArticleResep::with(['user', 'category'])->findOrFail($id);
+
+    if (request()->wantsJson()) {
+        return response()->json([
+            'status' => true,
+            'data' => $article
+        ]);
+    }
+
+    return view('recipes.show', compact('article'));
+}
 
     public function destroy($id)
     {
@@ -99,3 +114,4 @@ class ArticleResepController extends Controller
         return redirect()->route('my-recipes')->with('success', 'Recipe deleted successfully!');
     }
 }
+

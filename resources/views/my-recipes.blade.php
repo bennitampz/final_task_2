@@ -56,11 +56,11 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Ingredients</label>
-                                <textarea class="form-control" name="ingredients" rows="3" required>{{ $recipe->ingredients }}</textarea>
+                                <textarea class="form-control" name="ingredients" rows="10" required>{{ $recipe->ingredients }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Instructions</label>
-                                <textarea class="form-control" name="instructions" rows="3" required>{{ $recipe->instructions }}</textarea>
+                                <textarea class="form-control" name="instructions" rows="10" required>{{ $recipe->instructions }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Rating</label>
