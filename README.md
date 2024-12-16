@@ -1,4 +1,4 @@
-![{461AA32D-E4B0-46C1-8E07-78E7E6CACACE}](https://github.com/user-attachments/assets/ab93526c-5c1f-4558-8878-08dffe51508e)![{A1B8144D-B544-4909-9A5D-6776E3F9B05A}](https://github.com/user-attachments/assets/17cf462e-2dc3-424c-9586-60181f98a6ef)# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
+# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
 
 ## Konsep: Recipes
 
