@@ -51,6 +51,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 ### 7. Konfigurasi Database
+Saya telah menyediakan dummy database silahkan jika ingin digunakan
 ```bash
 Edit file .env dan sesuaikan detail database Anda:
 DB_CONNECTION=mysql
