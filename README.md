@@ -122,7 +122,7 @@ Beberapa file dan direktori penting:
    
 ![{CF2BDAB4-7D3D-43F5-9C4D-26D7A8F9A054}](https://github.com/user-attachments/assets/807250f4-608a-403d-919c-08f97650362e)
 
-2. Edit recipe
+2. Edit recipe (update)
    
 ![{4F8D2E03-E4E9-4932-B972-4CCB1AEF4427}](https://github.com/user-attachments/assets/6c05ddc3-6039-4503-a2cc-d71bd5a7b1f9)
 
@@ -137,7 +137,7 @@ Beberapa file dan direktori penting:
 
 ![{5DAFDD17-9BCF-4597-9E3A-AAA17D32FEF1}](https://github.com/user-attachments/assets/609643f4-8847-4d16-8be6-1c3f47d50dbe)
 
-2. Edit Category
+2. Edit Category (update)
 
 ![{BBA05D1B-ACFB-48E3-B861-14D55968A711}](https://github.com/user-attachments/assets/270691cc-4d45-4df0-900b-e02c504b2acb)
 
@@ -161,6 +161,52 @@ Beberapa file dan direktori penting:
 
 ![{4CB13BA8-478B-4D73-9F5C-FF9DA3D027D5}](https://github.com/user-attachments/assets/5a292dc4-98de-43e1-a007-9f43e998328a)
 
+### Gunakan laravel blade untuk membuat templatenya
+
+![{EF947292-7B3F-4166-831C-6D2F90CED365}](https://github.com/user-attachments/assets/d12a8064-0d43-4d0d-b81b-40ec4b8daaa4)
+
+### relasi laravel eloquent untuk menghubungkan relasi antar tabel
+
+**1.Di CategoryController.php**
+![{D9204631-31BC-4CB0-B595-EDA3EA9B1DD7}](https://github.com/user-attachments/assets/6d8d282e-293b-4c9e-960e-1ffabda21992)
+
+![{5DCCEE39-B798-4448-BBE2-284F63BBC2F2}](https://github.com/user-attachments/assets/b820157f-4216-40eb-9ac2-c98e7b1c9e9a)
+
+Ini menunjukkan bahwa model Kategori memiliki hubungan dengan:
+
+a.articles (hasMany)
+
+b.user (belongsTo)
+
+**2.Di ArticleResepController.php**
+
+![{278A5264-D0B7-4349-8B69-A53E81D7FC1E}](https://github.com/user-attachments/assets/c15fadef-17c1-403d-8101-7fb777454be9)
+
+![{ED68291A-6862-4809-A1F8-A08D48D3193F}](https://github.com/user-attachments/assets/782491e6-5571-4dfe-987a-0ab779ae1c77)
+
+Ini menunjukkan bahwa model Kategori memiliki hubungan dengan:
+
+a.user (belongsTo)
+
+b.category (belongsTo)
+
+Penggunaan metode with() dari Eloquent untuk eager loading dan withCount() untuk menghitung model terkait dengan jelas menunjukkan bahwa hubungan yang tepat telah diatur antara:
+
+a.Users and Categories
+
+b.Users and Articles
+
+c.Categories and Articles
+
+### seeder untuk membuat sample user
+
+![{81AFC8E1-9E12-4A0F-BE35-9AB53A7ABF8A}](https://github.com/user-attachments/assets/97bbb709-ada8-4a51-a4bf-c4e2c85e1072)
+![{12B6BC3E-FAB1-4884-8FEC-A1839EECD770}](https://github.com/user-attachments/assets/0f2178cd-ad72-4952-8c3f-d2ac585e7658)
+
+Ini akan membuat satu pengguna spesifik dengan kredensial:
+
+Email: test@example.com
+Password: password123
 
 ### 13. Kontribusi
 Kontribusi sangat diterima! Anda dapat melakukan fork repository ini dan membuat pull request untuk perbaikan atau penambahan fitur.
