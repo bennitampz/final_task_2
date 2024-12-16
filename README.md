@@ -28,117 +28,75 @@ Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini di lin
 ```bash
 git clone https://github.com/username/Final_Project_Second.git
 ```
-Copy
-
-Apply
-
-README.md
-2. Pindah ke Direktori Proyek
+### 2. Pindah ke Direktori Proyek
+```bash
 cd Final_Project_Second
-
-Copy
-
-Execute
-
-3. Instal Dependensi PHP
+```
+### 3. Instal Dependensi PHP
+```bash
 composer install
-
-Copy
-
-Execute
-
-4. Instal Dependensi Node.js
+```
+### 4. Instal Dependensi Node.js
+```bash
 npm install
-
-Copy
-
-Execute
-
-5. Salin File Environment
+```
+### 5. Salin File Environment
+```bash
 cp .env.example .env
-
-Copy
-
-Execute
-
-Note: Jika Anda menggunakan Windows, gunakan perintah copy sebagai gantinya.
-
-6. Generate Application Key
+```
+### 6. Generate Application Key
+```bash
 php artisan key:generate
-
-Copy
-
-Execute
-
-7. Konfigurasi Database
+```
+### 7. Konfigurasi Database
+```bash
 Edit file .env dan sesuaikan detail database Anda:
-
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=nama_database_anda
-DB_USERNAME=username_database_anda
-DB_PASSWORD=password_database_anda
-
-Copy
-
-Apply
-
-8. Migrasi dan Seed Database
+DB_DATABASE=resep_sedap_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+### 8. Migrasi dan Seed Database
+```bash
 php artisan migrate --seed
-
-Copy
-
-Execute
-
-9. Build Assets Frontend
+```
+### 9. Build Assets Frontend
 Untuk mode pengembangan:
-
+```bash
 npm run dev
-
-Copy
-
-Execute
-
-Untuk mode produksi:
-
-npm run build
-
-Copy
-
-Execute
-
-10. Menjalankan Server
+```
+### 10. Menjalankan Server
+```bash
 php artisan serve
-
-Copy
-
-Execute
-
+```
 Akses aplikasi melalui browser di http://localhost:8000.
 
-Penggunaan
+### 11. Penggunaan
 Beranda: Menampilkan resep terbaru dan populer.
 Registrasi/Login: Daftar sebagai pengguna baru atau masuk jika sudah memiliki akun.
 Profil: Lihat dan edit profil Anda.
 Tambah Resep: Unggah resep baru melalui formulir yang disediakan.
 Pencarian: Cari resep berdasarkan nama atau kategori.
-Struktur Proyek
+
+### 12. Struktur Proyek
 Beberapa file dan direktori penting:
 
 resources/views/welcome.blade.php: Halaman beranda aplikasi.
 config/database.php: Konfigurasi database aplikasi.
 bootstrap/cache/services.php: File cache layanan.
-Kontribusi
+
+### 13. Kontribusi
 Kontribusi sangat diterima! Anda dapat melakukan fork repository ini dan membuat pull request untuk perbaikan atau penambahan fitur.
 
-Masalah dan Saran
+### 14. Masalah dan Saran
 Jika Anda menemukan masalah atau memiliki saran, silakan buka Issue baru di repository ini.
 
-Lisensi
+### 15. Lisensi
 Proyek ini dilisensikan di bawah MIT License.
 
-Kredit
+## 16. Kredit
 Laravel
 Tailwind CSS
 Font Awesome
