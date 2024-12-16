@@ -1,4 +1,4 @@
-# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
+![{A1B8144D-B544-4909-9A5D-6776E3F9B05A}](https://github.com/user-attachments/assets/17cf462e-2dc3-424c-9586-60181f98a6ef)# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
 
 ## Konsep: Recipes
 
@@ -94,17 +94,44 @@ Beberapa file dan direktori penting:
 **Progress dan Bukti pengerjaan:**
 ### A. fitur authentication menggunakan laravel UI
 
-**a.Laravel UI package installation**
+**A.Laravel UI package installation**
 
 ![Screenshot 2024-12-16 202250](https://github.com/user-attachments/assets/fc750979-9a8c-4d90-b7e2-b193a669d900)
 
-**b.Login authentication**
+**B.Login authentication**
 
 ![{00AEC378-E442-4855-8045-76A305AD4A6A}](https://github.com/user-attachments/assets/33bdde66-d6f5-4b6e-a729-d341802449a0)
 
-**c.Register authentication**
+**C.Register authentication**
 
 ![{8236324C-E8D0-4B03-B13D-8D539D8627B8}](https://github.com/user-attachments/assets/784ccc92-6419-4817-bbe5-67031cb2768c)
+
+### B. Buatlah fungsional CRUD article serta category 
+
+**A.Fungsi menambahkan category**
+
+![{BFE7C938-C3B8-4A46-B972-91DBFE90E49F}](https://github.com/user-attachments/assets/b365d9b6-eef0-45c0-82a3-381c2a959e4b)
+
+**B.Fungsi menambahahkan articles(recipe)**
+
+![{A1B8144D-B544-4909-9A5D-6776E3F9B05A}](https://github.com/user-attachments/assets/e11f29c5-ad03-4204-be98-447131420369)
+
+**C.Fungsi melihat seluruh recipes yang dibuat user tertentu editing serta menghapus konten**
+
+![{CF2BDAB4-7D3D-43F5-9C4D-26D7A8F9A054}](https://github.com/user-attachments/assets/807250f4-608a-403d-919c-08f97650362e)
+
+![{4F8D2E03-E4E9-4932-B972-4CCB1AEF4427}](https://github.com/user-attachments/assets/6c05ddc3-6039-4503-a2cc-d71bd5a7b1f9)
+
+![{D0BFABCA-95C5-4A2E-BEA1-43512B8149F2}](https://github.com/user-attachments/assets/12aae0a7-dcdf-4860-9dc4-bfd09e37d27f)
+
+
+**D.Fungsi melihat seluruh category yang dibuat user editing serta menghapus konten**
+
+![{5DAFDD17-9BCF-4597-9E3A-AAA17D32FEF1}](https://github.com/user-attachments/assets/609643f4-8847-4d16-8be6-1c3f47d50dbe)
+
+![{BBA05D1B-ACFB-48E3-B861-14D55968A711}](https://github.com/user-attachments/assets/270691cc-4d45-4df0-900b-e02c504b2acb)
+
+![{918AF1D8-3F87-4315-ADB2-41B055D60582}](https://github.com/user-attachments/assets/2009d2a3-15f0-42e8-bc37-2fe01ed992e9)
 
 
 ### 13. Kontribusi
