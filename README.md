@@ -1,4 +1,6 @@
-# Final_Project_Second
+# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
+
+## Konsep: Recipes
 
 ## Tentang Proyek Ini
 
@@ -74,18 +76,30 @@ php artisan serve
 Akses aplikasi melalui browser di http://localhost:8000.
 
 ### 11. Penggunaan
-Beranda: Menampilkan resep terbaru dan populer.
-Registrasi/Login: Daftar sebagai pengguna baru atau masuk jika sudah memiliki akun.
-Profil: Lihat dan edit profil Anda.
-Tambah Resep: Unggah resep baru melalui formulir yang disediakan.
-Pencarian: Cari resep berdasarkan nama atau kategori.
+**Beranda**: Menampilkan resep terbaru dan populer.
+**Registrasi/Login**: Daftar sebagai pengguna baru atau masuk jika sudah memiliki akun.
+**Profil**: Lihat dan edit profil Anda.
+**Tambah Resep**: Unggah resep baru melalui formulir yang disediakan.
+**Pencarian**: Cari resep berdasarkan nama atau kategori.
 
 ### 12. Struktur Proyek
 Beberapa file dan direktori penting:
 
-resources/views/welcome.blade.php: Halaman beranda aplikasi.
-config/database.php: Konfigurasi database aplikasi.
-bootstrap/cache/services.php: File cache layanan.
+**resources/views/welcome.blade.php**: Halaman beranda aplikasi.
+**config/database.php**: Konfigurasi database aplikasi.
+**bootstrap/cache/services.php**: File cache layanan.
+
+### Tujuan 
+**Agar dapat menerapkan fitur blade serta laravel ui ke dalam project**
+**Progress dan Bukti pengerjaan:**
+### A. fitur authentication menggunakan laravel UI
+**a.Laravel UI package installation**
+![Screenshot 2024-12-16 202250](https://github.com/user-attachments/assets/fc750979-9a8c-4d90-b7e2-b193a669d900)
+**b.Login authentication**
+![{00AEC378-E442-4855-8045-76A305AD4A6A}](https://github.com/user-attachments/assets/33bdde66-d6f5-4b6e-a729-d341802449a0)
+**c.Register authentication**
+![{8236324C-E8D0-4B03-B13D-8D539D8627B8}](https://github.com/user-attachments/assets/784ccc92-6419-4817-bbe5-67031cb2768c)
+
 
 ### 13. Kontribusi
 Kontribusi sangat diterima! Anda dapat melakukan fork repository ini dan membuat pull request untuk perbaikan atau penambahan fitur.
