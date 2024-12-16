@@ -5,65 +5,54 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('user')->get();
-        return response()->json([
-            'status' => true,
-            'data' => $categories
-        ]);
-    }
-    public function show($id)
-{
-    $category = Category::with(['user', 'articles.user'])->findOrFail($id);
-
-    if (request()->wantsJson()) {
-        return response()->json([
-            'status' => true,
-            'data' => $category
-        ]);
+        $categories = Category::withCount('articles')->get();
+        return view('categories.index', compact('categories'));
     }
 
-    return view('recipes.category', compact('category'));
-}
-
+    public function create()
+    {
+        return view('categories.create');
+    }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:categories',
-            'description' => 'required|string|max:1000',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+        $imagePath = $request->file('image')->store('categories', 'public');
 
-        // Handle image upload
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imagePath = $image->store('categories', 'public');
-        }
-
-        $category = Category::create([
-            'name' => $request->name,
-            'description' => $request->description,
+        Category::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
             'image' => $imagePath,
             'user_id' => auth()->id()
         ]);
 
-        return redirect()->route('categories.create')
-            ->with('success', 'Category created successfully! Create another one.');
+        return redirect()->route('home')->with('success', 'Category created successfully!');
     }
+
+    public function show($id)
+    {
+        $category = Category::with(['user', 'articles.user'])->findOrFail($id);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'data' => $category
+            ]);
+        }
+
+        return view('recipes.category', compact('category'));
+    }
+
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -101,6 +90,5 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully');
-
     }
 }

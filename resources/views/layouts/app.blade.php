@@ -25,7 +25,7 @@
         }
         .navbar {
             padding: 1rem 0;
-            background: linear-gradient(to right, #4f46e5, #6366f1);
+            background: linear-gradient(to right, #FF2D20, #FF2D20);
         }
         .navbar-brand {
             color: white !important;
@@ -70,7 +70,7 @@
         <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <i class="fas fa-cube me-2"></i>Recipe Hub
+                    <i class="fas fa-mortar-pestle me-2"></i>Recipe Hub
 
                 </a>
 

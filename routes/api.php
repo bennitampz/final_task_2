@@ -24,8 +24,6 @@ Route::group(["middleware"=>["auth:api"]
     Route::post('/recipes', [ArticleResepController::class, 'store']);
     Route::middleware('auth:api')->post('/profile/update', [App\Http\Controllers\Api\ApiController::class, 'updateProfile']);
     Route::post('/profile/update', [ApiController::class, 'updateProfile'])->middleware('auth:api');
-
-
 });
 
 
