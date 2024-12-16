@@ -1,4 +1,4 @@
-![{A1B8144D-B544-4909-9A5D-6776E3F9B05A}](https://github.com/user-attachments/assets/17cf462e-2dc3-424c-9586-60181f98a6ef)# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
+![{461AA32D-E4B0-46C1-8E07-78E7E6CACACE}](https://github.com/user-attachments/assets/ab93526c-5c1f-4558-8878-08dffe51508e)![{A1B8144D-B544-4909-9A5D-6776E3F9B05A}](https://github.com/user-attachments/assets/17cf462e-2dc3-424c-9586-60181f98a6ef)# Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
 
 ## Konsep: Recipes
 
@@ -118,20 +118,48 @@ Beberapa file dan direktori penting:
 
 **C.Fungsi melihat seluruh recipes yang dibuat user tertentu editing serta menghapus konten**
 
+1. List recipe
+   
 ![{CF2BDAB4-7D3D-43F5-9C4D-26D7A8F9A054}](https://github.com/user-attachments/assets/807250f4-608a-403d-919c-08f97650362e)
 
+2. Edit recipe
+   
 ![{4F8D2E03-E4E9-4932-B972-4CCB1AEF4427}](https://github.com/user-attachments/assets/6c05ddc3-6039-4503-a2cc-d71bd5a7b1f9)
 
+3. Delete recipe
+   
 ![{D0BFABCA-95C5-4A2E-BEA1-43512B8149F2}](https://github.com/user-attachments/assets/12aae0a7-dcdf-4860-9dc4-bfd09e37d27f)
 
 
 **D.Fungsi melihat seluruh category yang dibuat user editing serta menghapus konten**
 
+1. List Category
+
 ![{5DAFDD17-9BCF-4597-9E3A-AAA17D32FEF1}](https://github.com/user-attachments/assets/609643f4-8847-4d16-8be6-1c3f47d50dbe)
+
+2. Edit Category
 
 ![{BBA05D1B-ACFB-48E3-B861-14D55968A711}](https://github.com/user-attachments/assets/270691cc-4d45-4df0-900b-e02c504b2acb)
 
+3. Delete Category
+
 ![{918AF1D8-3F87-4315-ADB2-41B055D60582}](https://github.com/user-attachments/assets/2009d2a3-15f0-42e8-bc37-2fe01ed992e9)
+
+**E.Fungsi Show recipe per {id}**
+
+![{461AA32D-E4B0-46C1-8E07-78E7E6CACACE}](https://github.com/user-attachments/assets/200a90b6-54ac-431e-898e-8eb2591cd4a0)
+
+**F.Fungsi Show Category per contain {id}**
+
+![{A12AB4C9-940F-4EF2-8FB3-B7270721EA30}](https://github.com/user-attachments/assets/a38d9695-fe1e-478f-8bfe-2ab5b2b786d8)
+
+**G.Explore All Category**
+
+![{F6B89E4B-1835-40A4-A56A-610EDE7AC294}](https://github.com/user-attachments/assets/340c3390-51da-47b9-9e96-6ddee2534470)
+
+**H.Explore All Recipe**
+
+![{4CB13BA8-478B-4D73-9F5C-FF9DA3D027D5}](https://github.com/user-attachments/assets/5a292dc4-98de-43e1-a007-9f43e998328a)
 
 
 ### 13. Kontribusi
