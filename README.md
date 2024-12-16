@@ -1,6 +1,6 @@
 # Final_Project_Second (Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI)
 
-## Konsep: Recipes
+##  Konsep: Recipes
 
 ## Tentang Proyek Ini
 
@@ -89,7 +89,7 @@ Beberapa file dan direktori penting:
 **config/database.php**: Konfigurasi database aplikasi.
 **bootstrap/cache/services.php**: File cache layanan.
 
-### Tujuan 
+### 13. Tujuan 
 **Agar dapat menerapkan fitur blade serta laravel ui ke dalam project**
 **Progress dan Bukti pengerjaan:**
 ### A. fitur authentication menggunakan laravel UI
@@ -106,7 +106,16 @@ Beberapa file dan direktori penting:
 
 ![{8236324C-E8D0-4B03-B13D-8D539D8627B8}](https://github.com/user-attachments/assets/784ccc92-6419-4817-bbe5-67031cb2768c)
 
-### B. Buatlah fungsional CRUD article serta category 
+**D.Edit Password**
+
+![{3AF3FB5F-9DD8-4F50-A7FC-02CCA061AB3A}](https://github.com/user-attachments/assets/86ffd47e-7512-4986-8d27-93263ba9b907)
+
+**E.Show Profile**
+
+![{2A1E0D48-BF8C-4C26-B1E0-DBB6C69219D5}](https://github.com/user-attachments/assets/c794629b-2141-4478-a69c-12675a17ae86)
+
+
+### B. Buatlah fungsional CRUD article serta category  dan juga Unit testing setiap halaman crud dan fitur
 
 **A.Fungsi menambahkan category**
 
@@ -161,11 +170,11 @@ Beberapa file dan direktori penting:
 
 ![{4CB13BA8-478B-4D73-9F5C-FF9DA3D027D5}](https://github.com/user-attachments/assets/5a292dc4-98de-43e1-a007-9f43e998328a)
 
-### Gunakan laravel blade untuk membuat templatenya
+### C. Gunakan laravel blade untuk membuat templatenya
 
 ![{EF947292-7B3F-4166-831C-6D2F90CED365}](https://github.com/user-attachments/assets/d12a8064-0d43-4d0d-b81b-40ec4b8daaa4)
 
-### relasi laravel eloquent untuk menghubungkan relasi antar tabel
+### D. relasi laravel eloquent untuk menghubungkan relasi antar tabel
 
 **1.Di CategoryController.php**
 ![{D9204631-31BC-4CB0-B595-EDA3EA9B1DD7}](https://github.com/user-attachments/assets/6d8d282e-293b-4c9e-960e-1ffabda21992)
@@ -198,7 +207,7 @@ b.Users and Articles
 
 c.Categories and Articles
 
-### seeder untuk membuat sample user
+### E. seeder untuk membuat sample user
 
 ![{81AFC8E1-9E12-4A0F-BE35-9AB53A7ABF8A}](https://github.com/user-attachments/assets/97bbb709-ada8-4a51-a4bf-c4e2c85e1072)
 ![{12B6BC3E-FAB1-4884-8FEC-A1839EECD770}](https://github.com/user-attachments/assets/0f2178cd-ad72-4952-8c3f-d2ac585e7658)
@@ -206,18 +215,19 @@ c.Categories and Articles
 Ini akan membuat satu pengguna spesifik dengan kredensial:
 
 Email: test@example.com
+
 Password: password123
 
-### 13. Kontribusi
+### 14. Kontribusi
 Kontribusi sangat diterima! Anda dapat melakukan fork repository ini dan membuat pull request untuk perbaikan atau penambahan fitur.
 
-### 14. Masalah dan Saran
+### 15. Masalah dan Saran
 Jika Anda menemukan masalah atau memiliki saran, silakan buka Issue baru di repository ini.
 
-### 15. Lisensi
+### 16. Lisensi
 Proyek ini dilisensikan di bawah MIT License.
 
-## 16. Kredit
+## 17. Kredit
 Laravel
 Tailwind CSS
 Font Awesome
