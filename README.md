@@ -93,10 +93,13 @@ Beberapa file dan direktori penting:
 **Agar dapat menerapkan fitur blade serta laravel ui ke dalam project**
 **Progress dan Bukti pengerjaan:**
 ### A. fitur authentication menggunakan laravel UI
+
 **a.Laravel UI package installation**
 ![Screenshot 2024-12-16 202250](https://github.com/user-attachments/assets/fc750979-9a8c-4d90-b7e2-b193a669d900)
+
 **b.Login authentication**
 ![{00AEC378-E442-4855-8045-76A305AD4A6A}](https://github.com/user-attachments/assets/33bdde66-d6f5-4b6e-a729-d341802449a0)
+
 **c.Register authentication**
 ![{8236324C-E8D0-4B03-B13D-8D539D8627B8}](https://github.com/user-attachments/assets/784ccc92-6419-4817-bbe5-67031cb2768c)
 
